@@ -30,7 +30,12 @@ export function TaskBoard() {
         <Stack divider={<StackDivider />} direction="row" spacing="4">
           {taskColumns.map((status) => {
             return (
-              <Stack key={`column-${status}`} width={`${100 / taskColumns.length}%`} spacing="4">
+              <Stack
+                key={`column-${status}`}
+                width={`${100 / taskColumns.length}%`}
+                spacing="4"
+                data-testid="task-column"
+              >
                 <TaskList
                   tasks={orderedTasks[status] || []}
                   onEditTask={handleEditTask}
@@ -43,7 +48,11 @@ export function TaskBoard() {
         </Stack>
 
         {editingTask && (
-          <TaskForm task={editingTask} onClose={() => handleEditTask(undefined)} onSave={handleSaveTask} />
+          <TaskForm
+            task={editingTask}
+            onClose={() => handleEditTask(undefined)}
+            onSave={handleSaveTask}
+          />
         )}
       </Stack>
     </DragDropContext>

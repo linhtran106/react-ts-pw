@@ -36,6 +36,7 @@ export const TaskList = (props: Props) => {
         aria-label="Add task"
         icon={<AddIcon />}
         onClick={() => onEditTask({ ...DEFAULT_TASK, status: status as TaskStatus })}
+        data-testid="add-btn"
       />
 
       <Droppable droppableId={status}>
@@ -62,7 +63,7 @@ export const TaskList = (props: Props) => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-
+                    data-testid="task-card"
                   >
                     <CardBody padding="4">
                       <Stack spacing="3">
@@ -78,6 +79,7 @@ export const TaskList = (props: Props) => {
                               onDeleteTask(item.id!)
                             }}
                             icon={<CloseIcon />}
+                            data-testid="delete-btn"
                           />
                         </Flex>
                         <Text fontSize="sm" whiteSpace="pre-line" isTruncated>{item.description}</Text>

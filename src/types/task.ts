@@ -9,7 +9,6 @@ export interface Task {
   title: string
   description?: string
   status: TaskStatus
-  displayOrder?: number
 }
 
 export interface FilterCriteria {

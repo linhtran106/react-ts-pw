@@ -30,7 +30,7 @@ export function useTaskBoard() {
   const handleSaveTask = (task: Task) => {
     setTasks(prev => {
       if (!task.id) {
-        return [...prev, { ...task, id: Date.now(), displayOrder: prev.length + 1 }]
+        return [...prev, { ...task, id: Date.now() }]
       }
       const newTasks = [...prev]
       const index = newTasks.findIndex(item => item.id === task.id)
