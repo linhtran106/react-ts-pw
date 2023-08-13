@@ -4,9 +4,7 @@
 
 describe('Test home page', () => {
   const selectors = {
-    logo: '.App-logo',
-    description: '[data-cy="description"]',
-    appLink: '.App-link'
+    pageHeader: '[data-cy="page-header"]',
   }
 
   beforeEach(() => {
@@ -14,14 +12,6 @@ describe('Test home page', () => {
   })
 
   it('should has correct UI', function () {
-    cy.log('** Verify HomePage is visible: Logo app & Description')
-    cy.get(selectors.logo).should('be.visible')
-    cy.get(selectors.description).should('be.visible')
-  })
-
-  it('navigate to React Document page', function () {
-    cy.log('** Verify user is navigated to react.org successfully')
-    cy.get(selectors.appLink).invoke('removeAttr', 'target').click()
-    cy.url().should('eq', 'https://react.dev/')
+    cy.get(selectors.pageHeader).should('be.visible')
   })
 })
