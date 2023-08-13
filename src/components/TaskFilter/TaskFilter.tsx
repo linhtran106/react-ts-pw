@@ -27,6 +27,7 @@ export function TaskFilter(props: Props) {
         <Select
           value={filterCriteria.status}
           onChange={e => onChangeFilterCriteria({ status: e.target.value })}
+          data-testid="status-select"
         >
           {statusOptions.map(option => (
             <option key={option.value} value={option.value}>{option.label}</option>
@@ -42,9 +43,10 @@ export function TaskFilter(props: Props) {
           <Input
             value={filterCriteria.searchTerm}
             onChange={e => onChangeFilterCriteria({ searchTerm: e.target.value })}
+            data-testid="search-input"
           />
           {filterCriteria.searchTerm && (
-            <InputRightElement onClick={() => onChangeFilterCriteria({ searchTerm: '' })}>
+            <InputRightElement onClick={() => onChangeFilterCriteria({ searchTerm: '' })} data-testid="clear-btn">
               <SmallCloseIcon color='gray.300' />
             </InputRightElement>
           )}

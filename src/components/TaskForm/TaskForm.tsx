@@ -59,6 +59,7 @@ export function TaskForm(props: Props) {
                 <Input
                   value={editValue.title}
                   onChange={e => handeInputChange({ title: e.target.value })}
+                  data-testid="title-input"
                 />
                 {isDirty && titleError && <FormErrorMessage>{titleError}</FormErrorMessage>}
               </FormControl>
@@ -68,6 +69,7 @@ export function TaskForm(props: Props) {
                 <Textarea
                   value={editValue.description}
                   onChange={e => handeInputChange({ description: e.target.value })}
+                  data-testid="description-input"
                 />
               </FormControl>
 
@@ -76,6 +78,7 @@ export function TaskForm(props: Props) {
                 <Select
                   value={editValue.status}
                   onChange={e => handeInputChange({ status: e.target.value as TaskStatus })}
+                  data-testid="status-input"
                 >
                   {STATUS_OPTIONS.map(option => (
                     <option key={option.value} value={option.value}>{option.label}</option>
