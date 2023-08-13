@@ -71,6 +71,7 @@ export function useTaskBoard() {
       }
 
       const newTasks = Object.values(newOrderedTasks).reduce((prev, current) => prev.concat(current), [])
+
       setTasks(newTasks)
       return
     }
@@ -87,6 +88,7 @@ export function useTaskBoard() {
       }
 
       const newTasks = Object.values(newOrderedTasks).reduce((prev, current) => prev.concat(current), [])
+
       setTasks(newTasks)
       return
     }
