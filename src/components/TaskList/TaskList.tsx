@@ -33,7 +33,7 @@ export const TaskList = (props: Props) => {
       <IconButton
         variant="outline"
         colorScheme="blue"
-        aria-label="Add task"
+        aria-label={`Add ${status} task`}
         icon={<AddIcon />}
         onClick={() => onEditTask({ ...DEFAULT_TASK, status: status as TaskStatus })}
         data-testid="add-btn"
@@ -72,7 +72,7 @@ export const TaskList = (props: Props) => {
                           <IconButton
                             variant='ghost'
                             colorScheme='gray'
-                            aria-label='Close'
+                            aria-label='Delete task'
                             size="xs"
                             onClick={e => {
                               e.stopPropagation()
