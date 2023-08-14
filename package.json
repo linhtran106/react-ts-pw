@@ -28,7 +28,7 @@
     "test:e2e": "npx playwright test",
     "test:e2e-ui": "npx playwright test --ui",
     "test:e2e-trace": "npx playwright test --trace on",
-    "report": "npx playwright show-report"
+    "test:report": "npx playwright show-report"
   },
   "eslintConfig": {
     "extends": [
