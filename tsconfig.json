@@ -20,14 +20,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": [
-      "cypress",
       "node"
     ]
   },
   "include": [
     "**/*.ts"
   ],
-  "exclude": [
-    "**/*.test.ts"
-  ]
+  // "exclude": [
+  //   "**/*.test.ts"
+  // ]
 }

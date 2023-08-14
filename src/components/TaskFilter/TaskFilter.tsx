@@ -44,6 +44,8 @@ export function TaskFilter(props: Props) {
             value={filterCriteria.searchTerm}
             onChange={e => onChangeFilterCriteria({ searchTerm: e.target.value })}
             data-testid="search-input"
+            placeholder="Search title or description"
+            aria-label="Search tasks"
           />
           {filterCriteria.searchTerm && (
             <InputRightElement onClick={() => onChangeFilterCriteria({ searchTerm: '' })} data-testid="clear-btn">

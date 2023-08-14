@@ -60,6 +60,7 @@ export function TaskForm(props: Props) {
                   value={editValue.title}
                   onChange={e => handeInputChange({ title: e.target.value })}
                   data-testid="title-input"
+                  placeholder="Enter title"
                 />
                 {isDirty && titleError && <FormErrorMessage>{titleError}</FormErrorMessage>}
               </FormControl>
@@ -70,6 +71,7 @@ export function TaskForm(props: Props) {
                   value={editValue.description}
                   onChange={e => handeInputChange({ description: e.target.value })}
                   data-testid="description-input"
+                  placeholder="Enter description"
                 />
               </FormControl>
 
@@ -79,6 +81,7 @@ export function TaskForm(props: Props) {
                   value={editValue.status}
                   onChange={e => handeInputChange({ status: e.target.value as TaskStatus })}
                   data-testid="status-input"
+                  placeholder="Select status"
                 >
                   {STATUS_OPTIONS.map(option => (
                     <option key={option.value} value={option.value}>{option.label}</option>
