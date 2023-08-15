@@ -42,8 +42,7 @@ export function useTaskBoard() {
   }
 
   const handleDeleteTask = (id: number) => {
-    console.log('INTENTIONAL COMMENT FOR FAILED CASES DEMONSTRATION')
-    // setTasks(prev => prev.filter(item => item.id !== id))
+    setTasks(prev => prev.filter(item => item.id !== id))
   }
 
   const handleChangeFilterCriteria = (filter: Partial<FilterCriteria>) => {
