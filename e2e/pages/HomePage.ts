@@ -106,4 +106,17 @@ export class HomePage {
     await this.searchInput.clear()
     await this.searchInput.type(text)
   }
+
+  async dragTask(draggingTask: Locator, targetColumn: Locator, position?: { x: number; y: number }) {
+    const taskPos = (await draggingTask.boundingBox())!
+    const targetColumnPos = (await targetColumn.boundingBox())!
+
+    await draggingTask.hover()
+    await this.page.mouse.down()
+
+    await this.page.mouse.move(position?.x || taskPos.width, position?.y || targetColumnPos.y)
+
+    await targetColumn.hover()
+    await this.page.mouse.up()
+  }
 }

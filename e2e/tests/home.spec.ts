@@ -157,25 +157,18 @@ test.describe('Test filter/search tasks', () => {
 })
 
 test.describe('Test task card functions: delete / drag & drop', () => {
-  test.beforeEach(async ({ page }) => {
-    const homePage = new HomePage(page)
-    const taskFormPage = new TaskFormPage(page)
-
-    for (const status of TASK_STATUSES) {
-      const NEW_TASK = {
-        title: `Task with status ${status}`,
-        description: 'lorem ipsum',
-        status: status,
-      }
-
-      await homePage.clickAddTodoTaskBtn()
-      await taskFormPage.fillTaskAndSave(NEW_TASK)
-    }
-  })
-
   test('TC_8. it should delete task correctly', async ({ page }) => {
     const homePage = new HomePage(page)
+    const taskFormPage = new TaskFormPage(page)
     const status = 'Todo' as TaskStatus
+    const NEW_TASK = {
+      title: `Task with status ${status}`,
+      description: 'lorem ipsum',
+      status: status,
+    }
+
+    await homePage.clickAddTodoTaskBtn()
+    await taskFormPage.fillTaskAndSave(NEW_TASK)
 
     await homePage.deleteTask(`Task with status ${status}`)
     await homePage.verifyEmptyTaskColumnUI(status)
@@ -183,20 +176,50 @@ test.describe('Test task card functions: delete / drag & drop', () => {
 
   test('TC_9. it should update task status correctly when dragging to other column', async ({ page }) => {
     const homePage = new HomePage(page)
+    const taskFormPage = new TaskFormPage(page)
+    const status = 'Todo' as TaskStatus
+    const NEW_TASK = {
+      title: `Task with status ${status}`,
+      description: 'lorem ipsum',
+      status: status,
+    }
+
+    await homePage.clickAddTodoTaskBtn()
+    await taskFormPage.fillTaskAndSave(NEW_TASK)
+
     const { taskColumn: inProgressColumn } = homePage.getTaskColumnElements('In Progress')
 
     const todoTask = homePage.getTaskCardByText('Task with status Todo')
 
-    await todoTask.hover()
-    await page.mouse.down()
-
-    const box = (await inProgressColumn.boundingBox())!
-
-    await page.mouse.move(box.width / 2, box.y)
-
-    await inProgressColumn.hover()
-    await page.mouse.up()
+    homePage.dragTask(todoTask, inProgressColumn)
 
     await expect(todoTask.getByText('In Progress')).toBeVisible()
+  })
+
+  test('TC_10. it should reoder task status correctly when dragging in same column', async ({ page }) => {
+    const homePage = new HomePage(page)
+    const taskFormPage = new TaskFormPage(page)
+    const status = 'Todo' as TaskStatus
+
+    const NEW_TASK = {
+      description: 'lorem ipsum',
+      status: status,
+    }
+
+    await homePage.clickAddTodoTaskBtn()
+    await taskFormPage.fillTaskAndSave({ ...NEW_TASK, title: 'task 1' })
+
+    await homePage.clickAddTodoTaskBtn()
+    await taskFormPage.fillTaskAndSave({ ...NEW_TASK, title: 'task 2' })
+
+    const { taskColumn: todoColumn } = homePage.getTaskColumnElements(status)
+
+    const todoTask1 = homePage.getTaskCardByText('task 1')
+
+    homePage.dragTask(todoTask1, todoColumn)
+
+    const { taskCards } = homePage.getTaskColumnElements(status)
+
+    await expect(taskCards.first().getByText('task 2')).toBeVisible()
   })
 })
