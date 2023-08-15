@@ -1,6 +1,12 @@
 name: Unit Test
 
 on:  
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Which branch to checkout and run test'
+        required: false
+        default: main
   pull_request:
     branches:
       - main 
