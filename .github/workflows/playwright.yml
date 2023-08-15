@@ -1,9 +1,13 @@
 name: Playwright Tests
 on:
-  push:
-    branches: [ main, master ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Which branch to checkout and run test'
+        required: false
+        default: main
 jobs:
   test:
     timeout-minutes: 60
